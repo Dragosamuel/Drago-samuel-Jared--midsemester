@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery - Friends and Family</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Gallery</h1>
+  </header>
+
+  <!-- Navigation Bar -->
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+    </ul>
+  </nav>
+
+  <!-- Slideshow Container -->
+  <div class="slideshow-container">
+    <!-- Slide 1 -->
+    <div class="slide fade">
+      <img src="image/vd.jpg" alt="Family Event">
+      <div class="caption">Visitation at BASS</div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="slide fade">
+      <img src="image/20240324_165033.jpg" alt="Friends Trip">
+      <div class="caption">VD</div>
+    </div>
+
+    <!-- Add more slides as needed -->
+    <div class="slide fade">
+      <img src="image/friend.jpeg" alt="Family Outing">
+      <div class="caption">Family Outing</div>
+    </div>
+
+    <!-- Next and Previous Buttons -->
+    <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+    <a class="next" onclick="changeSlide(1)">&#10095;</a>
+  </div>
+
+  <!-- Dots to Indicate Slide Position -->
+  <div style="text-align:center">
+    <span class="dot" onclick="setSlide(1)"></span>
+    <span class="dot" onclick="setSlide(2)"></span>
+    <span class="dot" onclick="setSlide(3)"></span>
+  </div>
+
+  <!-- JavaScript for Slideshow Functionality -->
+  <script>
+    let slideIndex = 1;
+    showSlide(slideIndex);
+
+    // Next/previous controls
+    function changeSlide(n) {
+      showSlide(slideIndex += n);
+    }
+
+    // Thumbnail image controls
+    function setSlide(n) {
+      showSlide(slideIndex = n);
+    }
+
+    function showSlide(n) {
+      let slides = document.getElementsByClassName("slide");
+      let dots = document.getElementsByClassName("dot");
+      if (n > slides.length) { slideIndex = 1 }
+      if (n < 1) { slideIndex = slides.length }
+      for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+      }
+      for (let i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+      }
+      slides[slideIndex - 1].style.display = "block";
+      dots[slideIndex - 1].className += " active";
+    }
+  </script>
+</body>
+</html>
